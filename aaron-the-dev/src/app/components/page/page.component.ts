@@ -4,7 +4,7 @@ import { Observable }     from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 
 //Import our sayonara service
-import { SayonaraPublicService } from '../sayonara-public.service';
+import { SayonaraPublicService } from '../../services/sayonara-public.service';
 
 @Component({
   selector: 'app-page',

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Observable }     from 'rxjs/Observable';
 
 //Import our sayonara service
-import { SayonaraPublicService } from './sayonara-public.service';
+import { SayonaraPublicService } from './services/sayonara-public.service';
 
 @Component({
   selector: 'app-root',

@@ -9,7 +9,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MaterialModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
-import { PageComponent } from './page/page.component';
+import { PageComponent } from './components/page/page.component';
 
 //Declare our routes
 //https://angular.io/docs/ts/latest/guide/router.html
