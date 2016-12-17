@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable }     from 'rxjs/Observable';
 
 //Import our sayonara service
 import { SayonaraPublicService } from './sayonara-public.service';
@@ -12,11 +14,27 @@ import { SayonaraPublicService } from './sayonara-public.service';
 export class AppComponent implements OnInit {
   title = 'app works!';
 
-  constructor(private sayonaraService: SayonaraPublicService) { }
+  //The title attribute of the sayonara site that leads home
+  private homePageTitleKey = 'home';
+
+  constructor(
+    private router: Router,
+    private sayonaraService: SayonaraPublicService
+  ) { }
 
   ngOnInit() {
+    //Get a reference to this
+    let self = this;
     //Make the request
-    console.log('Inited!');
-    this.sayonaraService.getSayonaraSite();
+    this.sayonaraService.getSayonaraSite().subscribe((success) => {
+      //Got the json!
+      console.log("Sayonara Success: ", success);
+
+      //Navigate to the home page
+      this.router.navigate(['/page/' + self.homePageTitleKey]);
+    }, (error) => {
+      //TODO: handle the error
+      console.log("Sayonara error: ", error);
+    });
   }
 }
