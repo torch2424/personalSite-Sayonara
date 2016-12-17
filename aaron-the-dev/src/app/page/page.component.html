@@ -1,3 +1,13 @@
 <p>
   page works!
 </p>
+
+<!-- Page Title -->
+{{pageTitle}}
+
+<!-- Page Content -->
+<!-- Need a filter to not remove style tags: http://stackoverflow.com/questions/39628007/angular2-innerhtml-binding-remove-style-attribute -->
+<div [innerHTML]="pageContent">
+</div>
+
+<!-- Entries -->
