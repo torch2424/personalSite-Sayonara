@@ -14,6 +14,9 @@ import { SayonaraPublicService } from './services/sayonara-public.service';
 export class AppComponent implements OnInit {
   title = 'app works!';
 
+  //The Website Title
+  siteTitle = '';
+
   //The title attribute of the sayonara site that leads home
   private homePageTitleKey = 'home';
 
@@ -26,9 +29,14 @@ export class AppComponent implements OnInit {
     //Get a reference to this
     let self = this;
     //Make the request
-    this.sayonaraService.getSayonaraSite().subscribe((success) => {
+    this.sayonaraService.getSayonaraSite().subscribe((success: any) => {
       //Got the json!
       console.log("Sayonara Success: ", success);
+
+      //Set the site title
+      this.siteTitle = success.siteName;
+
+      //TODO: Set the nav bar
 
       //Navigate to the home page
       this.router.navigate(['/page/' + self.homePageTitleKey]);
