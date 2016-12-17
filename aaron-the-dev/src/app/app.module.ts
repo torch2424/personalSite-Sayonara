@@ -4,6 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
 
+//Material Design
+//https://github.com/jelbourn/material2-app
+import { MaterialModule } from '@angular/material';
+
 import { AppComponent } from './app.component';
 import { PageComponent } from './page/page.component';
 
@@ -27,7 +31,8 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     JsonpModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    MaterialModule.forRoot()
   ],
   exports: [
     RouterModule

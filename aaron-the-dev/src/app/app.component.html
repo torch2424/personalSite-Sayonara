@@ -1,5 +1,23 @@
 <!-- Place our header / nav -->
+<!-- https://github.com/jelbourn/material2-app/blob/master/src/app/app.component.html -->
+<md-sidenav-layout>
 
+  <!-- Mobile Nav Bar -->
+  <md-sidenav #sidenav mode="side" class="app-sidenav">
+    Sidenav
+  </md-sidenav>
+
+  <!-- Desktop Nav Bar -->
+  <md-toolbar color="primary">
+    <button class="app-icon-button" (click)="sidenav.toggle()">
+      <i class="material-icons app-toolbar-menu">menu</i>
+    </button>
+
+    Angular Material2 Example App
+
+    <span class="app-toolbar-filler"></span>
+    <button md-button (click)="isDarkTheme = !isDarkTheme">TOGGLE DARK THEME</button>
+  </md-toolbar>
 
 <!-- Main Application -->
 <h1>
@@ -10,3 +28,5 @@
 <!-- Routed views go here -->
 
 <!-- Place our footer -->
+
+</md-sidenav-layout>
