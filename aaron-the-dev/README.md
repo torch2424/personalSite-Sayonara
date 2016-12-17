@@ -1,5 +1,7 @@
 # AaronTheDev
 
+Serve with `ng serve --host 0.0.0.0 --port 4000`
+
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.22-1.
 
 ## Development server

@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+
+//Using a prebuilt material theme for now :)
+@import '~@angular/material/core/theming/prebuilt/indigo-pink.css';
+
+//TODO: Make a custom theme: https://github.com/angular/material2/blob/master/docs/theming.md
+body {
+  margin: 0;
+}
