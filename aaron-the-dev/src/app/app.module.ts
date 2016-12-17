@@ -5,9 +5,13 @@ import { HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
+import { PageComponent } from './page/page.component';
 
 //Declare our routes
-const routes: Routes = [];
+//https://angular.io/docs/ts/latest/guide/router.html
+const appRoutes: Routes = [
+  { path: 'page/:title', component: PageComponent },
+];
 // const routes: Routes = [
 //   { path: '', component: HomeComponent },
 //   { path: '**', component: PageNotFoundComponent }
@@ -15,13 +19,14 @@ const routes: Routes = [];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PageComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forChild(routes)
+    RouterModule.forRoot(appRoutes)
   ],
   exports: [
     RouterModule
