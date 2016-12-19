@@ -42,7 +42,7 @@
   },
   "defaults": {
     "poll": 1000,
-    "styleExt": "css",
+    "styleExt": "scss",
     "prefixInterfaces": false,
     "inline": {
       "style": false,
