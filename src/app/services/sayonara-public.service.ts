@@ -16,6 +16,8 @@ export class SayonaraPublicService {
 
   private sayonaraSiteJson: any;
 
+  private sayonaraError = false;
+
   constructor(
     private http: Http,
     @Inject(DOCUMENT) private document: any
@@ -55,5 +57,15 @@ export class SayonaraPublicService {
           //Completed
         });
     });
+  }
+
+  //Function to toggle the sayonara Error
+  toggleSayonaraError() {
+      this.sayonaraError = !this.sayonaraError;
+  }
+
+  //Function to return the sayonara error
+  getSayonaraError() {
+      return this.sayonaraError;
   }
 }

@@ -14,13 +14,10 @@ import { SayonaraPublicService } from './services/sayonara-public.service';
 export class AppComponent implements OnInit {
   //The Website Title
   siteTitle = '';
-
   //Array of titles of pages for the nav bar
   navPages = [];
-
   //Our current page
   currentPage = '';
-
   //The title attribute of the sayonara site that leads home
   private homePageTitleKey = 'Home';
 
@@ -46,7 +43,7 @@ export class AppComponent implements OnInit {
       this.router.navigate(['/page/' + self.homePageTitleKey]);
       this.currentPage = self.homePageTitleKey;
     }, (error) => {
-      //TODO: handle the error
+      this.sayonaraService.toggleSayonaraError();
       console.log("Sayonara error: ", error);
     });
   }

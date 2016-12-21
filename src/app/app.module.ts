@@ -10,6 +10,7 @@ import { MaterialModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { PageComponent } from './components/page/page.component';
+import { SayonaraErrorComponent } from './components/sayonara-error/sayonara-error.component';
 
 //Declare our routes
 //https://angular.io/docs/ts/latest/guide/router.html
@@ -24,7 +25,8 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    PageComponent
+    PageComponent,
+    SayonaraErrorComponent
   ],
   imports: [
     BrowserModule,

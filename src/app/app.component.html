@@ -1,4 +1,4 @@
-<!-- Place our header / nav -->
+<!-- Place our header / nav, only show if now error -->
 <!-- https://github.com/jelbourn/material2-app/blob/master/src/app/app.component.html -->
 <md-sidenav-layout class="nav">
 
@@ -10,6 +10,7 @@
 
     <!-- List all of our page titles -->
     <div class="nav__sidenav__page-link animated fadeInLeft"
+        [hidden]="sayonaraService.getSayonaraError()"
         *ngFor="let pageTitle of navPages; let pageIndex = index;"
         [ngClass]="{'nav__sidenav__page-link--active-page': isCurrentPage(pageTitle)}"
         (click)="goToPage(pageTitle, sidenav)">
@@ -28,7 +29,7 @@
 
   <!-- Desktop Nav Bar -->
   <md-toolbar color="primary">
-    <button class="nav__icon-button" (click)="sidenav.toggle()">
+    <button class="nav__icon-button" [hidden]="sayonaraError" (click)="sidenav.toggle()">
       <i class="material-icons app-toolbar-menu">menu</i>
     </button>
 
@@ -38,6 +39,7 @@
 
     <!-- List all of our page titles -->
     <div class="nav__page-link"
+        [hidden]="sayonaraService.getSayonaraError()"
         *ngFor="let pageTitle of navPages"
         [ngClass]="{'nav__page-link--active-page': isCurrentPage(pageTitle)}"
         (click)="goToPage(pageTitle)">
@@ -54,13 +56,19 @@
   </div>
 
 <!-- Main Application -->
-<div class="c-app">
+<div class="c-app" [hidden]="sayonaraService.getSayonaraError()">
 
     <router-outlet></router-outlet>
     <!-- Routed views go here -->
 
     <!-- Place our footer -->
 
+</div>
+
+<!-- Our view if there is a sayonara error -->
+<div class="c-app--error" [hidden]="!sayonaraService.getSayonaraError()">
+    <!-- Show the Error Component -->
+    <sayonara-error></sayonara-error>
 </div>
 
 </md-sidenav-layout>

@@ -29,6 +29,7 @@ var AppComponent = (function () {
             _this.router.navigate(['/page/' + self.homePageTitleKey]);
             _this.currentPage = self.homePageTitleKey;
         }, function (error) {
+            _this.sayonaraService.toggleSayonaraError();
             console.log("Sayonara error: ", error);
         });
     };

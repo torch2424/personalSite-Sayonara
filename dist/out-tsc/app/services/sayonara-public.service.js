@@ -20,6 +20,7 @@ var SayonaraPublicService = (function () {
         this.http = http;
         this.document = document;
         this.sayonaraPublicPath = '/api/public';
+        this.sayonaraError = false;
     }
     SayonaraPublicService.prototype.getSayonaraSite = function () {
         var sayonaraUrl = '//' + this.document.location.hostname + ':8000' + this.sayonaraPublicPath;
@@ -39,6 +40,12 @@ var SayonaraPublicService = (function () {
             }, function () {
             });
         });
+    };
+    SayonaraPublicService.prototype.toggleSayonaraError = function () {
+        this.sayonaraError = !this.sayonaraError;
+    };
+    SayonaraPublicService.prototype.getSayonaraError = function () {
+        return this.sayonaraError;
     };
     return SayonaraPublicService;
 }());

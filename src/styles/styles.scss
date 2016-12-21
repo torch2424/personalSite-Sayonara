@@ -8,20 +8,7 @@
 //Styling for ngMaterial element
 @import 'ngMaterial';
 
-//Import our fonts (from google Fonts)
-@import url('https://fonts.googleapis.com/css?family=Droid+Sans|Open+Sans|Roboto|Source+Sans+Pro|Ubuntu');
-
-//Styles that apply to the entire page
-html {
-    background-color: $bgColor;
-}
-body {
-    margin: 0;
-}
-* {
-    font-family: 'Roboto','Open Sans', 'Source Sans Pro', 'Droid Sans', 'Ubuntu', sans-serif;
-}
-
-//Import our App scss
+//Import our Component scss
 @import '../app/app.component';
 @import '../app/components/page/page.component';
+@import '../app/components/sayonara-error/sayonara-error.component';

@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 import { MaterialModule } from '@angular/material';
 import { AppComponent } from './app.component';
 import { PageComponent } from './components/page/page.component';
+import { SayonaraErrorComponent } from './components/sayonara-error/sayonara-error.component';
 var appRoutes = [
     { path: 'page/:title', component: PageComponent },
 ];
@@ -27,7 +28,8 @@ AppModule = __decorate([
     NgModule({
         declarations: [
             AppComponent,
-            PageComponent
+            PageComponent,
+            SayonaraErrorComponent
         ],
         imports: [
             BrowserModule,
