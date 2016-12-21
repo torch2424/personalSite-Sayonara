@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable }     from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 
@@ -19,13 +19,14 @@ export class PageComponent implements OnInit {
   pageEntries = [];
 
   //In the case of the page not being passed, the default title to look for
-  private defaultPage = 'home';
+  private defaultPage = 'Home';
 
   //Bind Html
   //http://stackoverflow.com/questions/31548311/angular-2-html-binding
   pageContent = '<h1>Loading Page...</h1>'
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private sayonaraService: SayonaraPublicService
   ) { }
@@ -45,11 +46,13 @@ export class PageComponent implements OnInit {
             self.pageContent = sayonaraPage.content;
         }
         else {
-            //TODO: Redirect to a 404
+            //Go to the default page
+            this.router.navigate(['/page/' + this.defaultPage]);
         }
       });
     }, (error) => {
-      //TODO: Handle this error
+      //Toggle the error on sayonara
+      this.sayonaraService.toggleSayonaraError();
     });
   }
 

@@ -8,20 +8,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { SayonaraPublicService } from '../../services/sayonara-public.service';
 var PageComponent = (function () {
-    function PageComponent(route, sayonaraService) {
+    function PageComponent(router, route, sayonaraService) {
+        this.router = router;
         this.route = route;
         this.sayonaraService = sayonaraService;
         this.pageLoaded = false;
         this.pageTitle = 'Home';
         this.pageEntries = [];
-        this.defaultPage = 'home';
+        this.defaultPage = 'Home';
         this.pageContent = '<h1>Loading Page...</h1>';
     }
     PageComponent.prototype.ngOnInit = function () {
+        var _this = this;
         var self = this;
         this.sayonaraService.getSayonaraSite().subscribe(function (success) {
             self.route.params.subscribe(function (params) {
@@ -32,9 +34,11 @@ var PageComponent = (function () {
                     self.pageContent = sayonaraPage.content;
                 }
                 else {
+                    _this.router.navigate(['/page/' + _this.defaultPage]);
                 }
             });
         }, function (error) {
+            _this.sayonaraService.toggleSayonaraError();
         });
     };
     PageComponent.prototype.getSayonaraPage = function (title, siteJson) {
@@ -72,7 +76,8 @@ PageComponent = __decorate([
         selector: 'app-page',
         templateUrl: './page.component.html'
     }),
-    __metadata("design:paramtypes", [ActivatedRoute,
+    __metadata("design:paramtypes", [Router,
+        ActivatedRoute,
         SayonaraPublicService])
 ], PageComponent);
 export { PageComponent };
