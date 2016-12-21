@@ -5,10 +5,10 @@ import { Observable }     from 'rxjs/Observable';
 //Import our sayonara service
 import { SayonaraPublicService } from './services/sayonara-public.service';
 
+//Style URLS will be importes by the styles.scss
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
   providers: [SayonaraPublicService]
 })
 export class AppComponent implements OnInit {

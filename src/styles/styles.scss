@@ -7,3 +7,7 @@
 body {
   margin: 0;
 }
+
+//Import our App scss
+@import '../app/app.component';
+@import '../app/components/page/page.component';

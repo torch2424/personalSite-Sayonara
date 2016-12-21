@@ -8,8 +8,7 @@ import { SayonaraPublicService } from '../../services/sayonara-public.service';
 
 @Component({
   selector: 'app-page',
-  templateUrl: './page.component.html',
-  styleUrls: ['./page.component.css']
+  templateUrl: './page.component.html'
 })
 export class PageComponent implements OnInit {
 
@@ -34,7 +33,13 @@ export class PageComponent implements OnInit {
       self.route.params.subscribe((params) => {
         let currentPageTitle = params['title'];
         self.pageTitle = currentPageTitle;
-        self.pageContent = self.getSayonaraPage(currentPageTitle, success).content;
+        let sayonaraPage = self.getSayonaraPage(currentPageTitle, success);
+        if(sayonaraPage.content) {
+            self.pageContent = sayonaraPage.content;
+        }
+        else {
+            //TODO: Redirect to a 404
+        }
       });
     }, (error) => {
       //TODO: Handle this error
@@ -45,6 +50,7 @@ export class PageComponent implements OnInit {
   getSayonaraPage(title: String, siteJson: any): any {
     //Loop through the site Json
     let foundPage;
+    console.log("Title: ", title, "json: ", siteJson);
     siteJson.pages.some((page) => {
       if(page.title.toLowerCase() == title.toLowerCase()) {
         //Page found, return the page
