@@ -29,6 +29,10 @@ var AppComponent = (function () {
             console.log("Sayonara error: ", error);
         });
     };
+    AppComponent.prototype.clickOutsideSideNav = function (sidenav) {
+        if (sidenav.opened)
+            sidenav.toggle();
+    };
     return AppComponent;
 }());
 AppComponent = __decorate([

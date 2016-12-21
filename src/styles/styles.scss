@@ -5,24 +5,14 @@
 @import 'mediaQuery';
 @import 'general';
 
+//Styling for ngMaterial element
+@import 'ngMaterial';
+
 html {
     background-color: $bgColor;
 }
 body {
-  margin: 0;
-}
-
-//Make a custom theme: https://github.com/angular/material2/blob/master/docs/theming.md
-@import '~@angular/material/core/theming/all-theme';
-.aaron-the-dev-light {
-    @include md-core();
-    $light-primary: md-palette($md-grey, A200, A100, A200);
-    $light-accent: md-palette($md-blue, A400, A200, A700);
-    $light-warn: md-palette($md-red, A400, A200, A700);
-
-    $light-theme: md-light-theme($light-primary, $light-accent, $light-warn);
-
-    @include angular-material-theme($light-theme);
+    margin: 0;
 }
 
 //Import our App scss

@@ -1,0 +1,16 @@
+.md-primary {
+    background-color: $navColor;
+}
+
+md-card {
+    background-color: $navColor;
+}
+
+md-sidenav-layout {
+    min-height: 100vh;
+}
+
+.md-sidenav-content {
+    overflow: initial !important;
+    margin-left: 0px !important;
+}

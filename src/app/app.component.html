@@ -1,15 +1,15 @@
 <!-- Place our header / nav -->
 <!-- https://github.com/jelbourn/material2-app/blob/master/src/app/app.component.html -->
-<md-sidenav-layout class="nav aaron-the-dev-light">
+<md-sidenav-layout class="nav">
 
   <!-- Mobile Nav Bar -->
-  <md-sidenav #sidenav mode="side" class="sidenav">
+  <md-sidenav #sidenav mode="side" class="nav__sidenav">
     Sidenav
   </md-sidenav>
 
   <!-- Desktop Nav Bar -->
   <md-toolbar color="primary">
-    <button class="sidenav__icon-button" (click)="sidenav.toggle()">
+    <button class="nav__icon-button" (click)="sidenav.toggle()">
       <i class="material-icons app-toolbar-menu">menu</i>
     </button>
 
@@ -18,14 +18,16 @@
     </div>
 
     <span class="app-toolbar-filler"></span>
-    <button md-button (click)="isDarkTheme = !isDarkTheme">Dark Theme</button>
   </md-toolbar>
+
+  <!-- Overlay to show when sidenav opened -->
+  <div class="nav__overlay"
+      [ngClass]="{'nav__overlay--show': sidenav.opened}"
+      (click)="clickOutsideSideNav(sidenav)">
+  </div>
 
 <!-- Main Application -->
 <div class="c-app">
-    <h1>
-      {{title}}
-    </h1>
 
     <router-outlet></router-outlet>
     <!-- Routed views go here -->

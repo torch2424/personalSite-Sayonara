@@ -45,4 +45,8 @@ export class AppComponent implements OnInit {
       console.log("Sayonara error: ", error);
     });
   }
+  
+  clickOutsideSideNav(sidenav: any) {
+      if(sidenav.opened) sidenav.toggle();
+  }
 }
