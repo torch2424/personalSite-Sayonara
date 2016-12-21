@@ -1,9 +1,11 @@
+//Apply styles to angular 2 material, and ovveride as needed
 .md-primary {
     background-color: $navColor;
 }
 
 md-card {
     background-color: $navColor;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12) !important;
 }
 
 md-sidenav-layout {
@@ -13,4 +15,12 @@ md-sidenav-layout {
 .md-sidenav-content {
     overflow: initial !important;
     margin-left: 0px !important;
+}
+
+md-toolbar {
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+
+    @include not-mobile() {
+        border-radius: 5px;
+    }
 }

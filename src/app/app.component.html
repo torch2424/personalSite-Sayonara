@@ -4,20 +4,24 @@
 
   <!-- Mobile Nav Bar -->
   <md-sidenav #sidenav mode="side" class="nav__sidenav">
+
+    <!-- title of the sidenav -->
+    <h2 class="center-text">Navigation</h2>
+
     <!-- List all of our page titles -->
     <div class="nav__sidenav__page-link"
         *ngFor="let pageTitle of navPages; let pageIndex = index;"
         [ngClass]="{'nav__sidenav__page-link--active-page': isCurrentPage(pageTitle)}"
         (click)="goToPage(pageTitle, sidenav)">
-        <hr *ngIf="pageIndex != 0">
-        {{pageTitle}}
+        <hr>
+        <div class="nav__sidenav__page-link__text">{{pageTitle}}</div>
     </div>
 
     <!-- Close Link -->
     <div class="nav__sidenav__page-link"
         (click)="sidenav.toggle()">
         <hr>
-        Close
+        <div class="nav__sidenav__page-link__text">Close</div>
         <hr>
     </div>
   </md-sidenav>

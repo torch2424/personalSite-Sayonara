@@ -11,6 +11,20 @@
         @include element('page-link') {
             @extend .center-text;
             font-size: 22px;
+            font-weight: bold;
+
+            @include element('text') {
+                padding-top: 15px;
+                padding-bottom: 15px;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            @include modifier('active-page') {
+                .nav__sidenav__page-link__text {
+                    background-color: lighten( $navColor, 4% );
+                }
+            }
         }
     }
 
@@ -30,7 +44,7 @@
         height: 100%;
 
         @include modifier('active-page') {
-            background-color: lighten( $navColor, 3% );
+            background-color: lighten( $navColor, 4% );
         }
 
         //Hide on mobile displays
@@ -88,7 +102,6 @@
     padding-bottom: 10px;
 
     @include all-mobile() {
-        margin-left: 10px;
-        margin-right: 10px;
+        width: 95%;
     }
 }
