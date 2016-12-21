@@ -52,6 +52,7 @@ export class PageComponent implements OnInit {
       });
     }, (error) => {
       //Toggle the error on sayonara
+      console.log('page error!');
       this.sayonaraService.toggleSayonaraError();
     });
   }
@@ -66,7 +67,8 @@ export class PageComponent implements OnInit {
     let foundPage;
     siteJson.pages.some((page) => {
       if(page.title.toLowerCase() == title.toLowerCase()) {
-        //Page found, return the page
+        //Page found!
+        //Return the page
         foundPage = page;
         setTimeout(() => {
             this.pageLoaded = true;
@@ -85,13 +87,17 @@ export class PageComponent implements OnInit {
   //Function to get all the entries of a page
   getSayonaraPageEntries(page) {
       //Contenate all entries into our page's page entries
+      let entries = [];
       if(page.entryTypes.length > 0) {
           page.entryTypes.forEach((entryType) => {
              if(entryType.entries.length > 0) {
-                 this.pageEntries = this.pageEntries.concat(entryType.entries);
+                 entries = entries.concat(entryType.entries);
              }
           });
       }
+
+      //Organize the entries
+      this.pageEntries = this.sayonaraService.getOrderHack(entries);
   }
 
 }

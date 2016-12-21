@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
 
+
 //Material Design
 //https://github.com/jelbourn/material2-app
 import { MaterialModule } from '@angular/material';
@@ -11,7 +12,7 @@ import { MaterialModule } from '@angular/material';
 import { AppComponent } from './app.component';
 import { PageComponent } from './components/page/page.component';
 import { SayonaraErrorComponent } from './components/sayonara-error/sayonara-error.component';
-import { SafeHtmlPipe } from './pipes/safe-html.pipe';
+import { SafeHtmlPipe } from './pipes/safe-html/safe-html.pipe';
 
 //Declare our routes
 //https://angular.io/docs/ts/latest/guide/router.html
@@ -35,7 +36,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     JsonpModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, { useHash: true }),
     MaterialModule.forRoot()
   ],
   exports: [

@@ -2,10 +2,17 @@
 $standard: #050505;
 $inverse: #F2F2F2;
 
+//Dark transparent
 $transparent: rgba(0, 0, 0, 0);
 $transparent-25: rgba(0, 0, 0, 0.25);
 $transparent-50: rgba(0, 0, 0, 0.5);
 $transparent-75: rgba(0, 0, 0, 0.75);
+
+//light transparent
+$transparent-light: rgba(255, 255, 255, 0);
+$transparent-light-25: rgba(255, 255, 255, 0.25);
+$transparent-light-50: rgba(255, 255, 255, 0.5);
+$transparent-light-75: rgba(255, 255, 255, 0.75);
 
 $bgColor: #e6decd;
 $navColor: #EAEAEA;

@@ -69,9 +69,11 @@ export class AppComponent implements OnInit {
 
   //Get all the titles of the pages from the site json
   private getNavPages(siteJson) {
-      let self = this;
+      let pagesArray = [];
       siteJson.pages.forEach((page) => {
-          if(page.title) self.navPages.push(page.title);
+          if(page.title) pagesArray.push(page);
       });
+
+      this.navPages = this.sayonaraService.getOrderHack(pagesArray);
   }
 }

@@ -11,11 +11,11 @@
     <!-- List all of our page titles -->
     <div class="nav__sidenav__page-link animated fadeInLeft"
         [hidden]="sayonaraService.getSayonaraError()"
-        *ngFor="let pageTitle of navPages; let pageIndex = index;"
+        *ngFor="let page of navPages; let pageIndex = index;"
         [ngClass]="{'nav__sidenav__page-link--active-page': isCurrentPage(pageTitle)}"
-        (click)="goToPage(pageTitle, sidenav)">
+        (click)="goToPage(page.title, sidenav)">
         <hr>
-        <div class="nav__sidenav__page-link__text">{{pageTitle}}</div>
+        <div class="nav__sidenav__page-link__text">{{page.title}}</div>
     </div>
 
     <!-- Close Link -->
@@ -40,10 +40,10 @@
     <!-- List all of our page titles -->
     <div class="nav__page-link"
         [hidden]="sayonaraService.getSayonaraError()"
-        *ngFor="let pageTitle of navPages"
+        *ngFor="let page of navPages"
         [ngClass]="{'nav__page-link--active-page': isCurrentPage(pageTitle)}"
-        (click)="goToPage(pageTitle)">
-        {{pageTitle}}
+        (click)="goToPage(page.title)">
+        {{page.title}}
     </div>
 
     <span class="app-toolbar-filler"></span>
