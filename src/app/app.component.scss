@@ -1,26 +1,51 @@
 .sidenav {
   padding: 10px;
   min-width: 200px;
+
+  @include element('icon-button') {
+    box-shadow: none;
+    user-select: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    filter: none;
+    font-weight: normal;
+    height: auto;
+    line-height: inherit;
+    margin: 0;
+    min-width: 0;
+    padding: 0;
+    text-align: left;
+    text-decoration: none;
+
+    //Hide on desktops and things
+    @include not-mobile() {
+        display: none;
+    }
+  }
 }
 
-.sidenav__icon-button {
-  box-shadow: none;
-  user-select: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  filter: none;
-  font-weight: normal;
-  height: auto;
-  line-height: inherit;
-  margin: 0;
-  min-width: 0;
-  padding: 0;
-  text-align: left;
-  text-decoration: none;
+.nav {
+    background-color: $bgColor;
+    
+    @include element('title') {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    @include element('link') {
+
+        //Hide on mobile displays
+        @include all-mobile() {
+            display: none;
+        }
+    };
 }
 
-.nav__title {
-  margin-left: 10px;
-  margin-right: 10px;
+.c-app {
+    max-width: 1024px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }

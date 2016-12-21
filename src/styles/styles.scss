@@ -1,11 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+//Import our helper SASS libs
+@import 'animate';
+@import 'bem';
+@import 'variables';
+@import 'mediaQuery';
+@import 'general';
 
-//Using a prebuilt material theme for now :)
-@import '~@angular/material/core/theming/prebuilt/indigo-pink.css';
-
-//TODO: Make a custom theme: https://github.com/angular/material2/blob/master/docs/theming.md
+html {
+    background-color: $bgColor;
+}
 body {
   margin: 0;
+}
+
+//Make a custom theme: https://github.com/angular/material2/blob/master/docs/theming.md
+@import '~@angular/material/core/theming/all-theme';
+.aaron-the-dev-light {
+    @include md-core();
+    $light-primary: md-palette($md-grey, A200, A100, A200);
+    $light-accent: md-palette($md-blue, A400, A200, A700);
+    $light-warn: md-palette($md-red, A400, A200, A700);
+
+    $light-theme: md-light-theme($light-primary, $light-accent, $light-warn);
+
+    @include angular-material-theme($light-theme);
 }
 
 //Import our App scss
