@@ -16,6 +16,7 @@ var PageComponent = (function () {
         this.route = route;
         this.sayonaraService = sayonaraService;
         this.pageTitle = 'Home';
+        this.defaultPage = 'home';
         this.pageContent = '<h1>Loading Page...</h1>';
     }
     PageComponent.prototype.ngOnInit = function () {

@@ -4,7 +4,21 @@
 
   <!-- Mobile Nav Bar -->
   <md-sidenav #sidenav mode="side" class="nav__sidenav">
-    Sidenav
+    <!-- List all of our page titles -->
+    <div class="nav__sidenav__page-link"
+        *ngFor="let pageTitle of navPages; let pageIndex = index;"
+        (click)="goToPage(pageTitle, sidenav)">
+        <hr *ngIf="pageIndex != 0">
+        {{pageTitle}}
+    </div>
+
+    <!-- Close Link -->
+    <div class="nav__sidenav__page-link"
+        (click)="sidenav.toggle()">
+        <hr>
+        Close
+        <hr>
+    </div>
   </md-sidenav>
 
   <!-- Desktop Nav Bar -->

@@ -14,6 +14,9 @@ export class PageComponent implements OnInit {
 
   pageTitle = 'Home';
 
+  //In the case of the page not being passed, the default title to look for
+  private defaultPage = 'home';
+
   //Bind Html
   //http://stackoverflow.com/questions/31548311/angular-2-html-binding
   pageContent = '<h1>Loading Page...</h1>'

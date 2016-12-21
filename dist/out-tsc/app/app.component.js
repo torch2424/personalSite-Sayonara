@@ -14,8 +14,8 @@ var AppComponent = (function () {
     function AppComponent(router, sayonaraService) {
         this.router = router;
         this.sayonaraService = sayonaraService;
-        this.title = 'app works!';
         this.siteTitle = '';
+        this.navPages = [];
         this.homePageTitleKey = 'home';
     }
     AppComponent.prototype.ngOnInit = function () {
@@ -24,6 +24,7 @@ var AppComponent = (function () {
         this.sayonaraService.getSayonaraSite().subscribe(function (success) {
             console.log("Sayonara Success: ", success);
             _this.siteTitle = success.siteName;
+            _this.getNavPages(success);
             _this.router.navigate(['/page/' + self.homePageTitleKey]);
         }, function (error) {
             console.log("Sayonara error: ", error);
@@ -32,6 +33,17 @@ var AppComponent = (function () {
     AppComponent.prototype.clickOutsideSideNav = function (sidenav) {
         if (sidenav.opened)
             sidenav.toggle();
+    };
+    AppComponent.prototype.goToPage = function (title, sidenav) {
+        this.router.navigate(['/page/' + title]);
+        sidenav.toggle();
+    };
+    AppComponent.prototype.getNavPages = function (siteJson) {
+        var self = this;
+        siteJson.pages.forEach(function (page) {
+            if (page.title)
+                self.navPages.push(page.title);
+        });
     };
     return AppComponent;
 }());

@@ -12,10 +12,11 @@ import { SayonaraPublicService } from './services/sayonara-public.service';
   providers: [SayonaraPublicService]
 })
 export class AppComponent implements OnInit {
-  title = 'app works!';
-
   //The Website Title
   siteTitle = '';
+
+  //Array of titles of pages for the nav bar
+  navPages = [];
 
   //The title attribute of the sayonara site that leads home
   private homePageTitleKey = 'home';
@@ -37,6 +38,7 @@ export class AppComponent implements OnInit {
       this.siteTitle = success.siteName;
 
       //TODO: Set the nav bar
+      this.getNavPages(success);
 
       //Navigate to the home page
       this.router.navigate(['/page/' + self.homePageTitleKey]);
@@ -45,8 +47,25 @@ export class AppComponent implements OnInit {
       console.log("Sayonara error: ", error);
     });
   }
-  
+
+  //Function to close the sidenav
   clickOutsideSideNav(sidenav: any) {
       if(sidenav.opened) sidenav.toggle();
+  }
+
+  //Funciton to go to a page from the sidenav
+  goToPage(title, sidenav) {
+      //Go to the route
+      this.router.navigate(['/page/' + title]);
+      //Toggle the sidenav
+      sidenav.toggle();
+  }
+
+  //Get all the titles of the pages from the site json
+  private getNavPages(siteJson) {
+      let self = this;
+      siteJson.pages.forEach((page) => {
+          if(page.title) self.navPages.push(page.title);
+      });
   }
 }
