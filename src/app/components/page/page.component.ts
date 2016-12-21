@@ -12,7 +12,11 @@ import { SayonaraPublicService } from '../../services/sayonara-public.service';
 })
 export class PageComponent implements OnInit {
 
+  //If our page is ready to be displayed
+  pageLoaded = false;
+
   pageTitle = 'Home';
+  pageEntries = [];
 
   //In the case of the page not being passed, the default title to look for
   private defaultPage = 'home';
@@ -51,6 +55,10 @@ export class PageComponent implements OnInit {
 
   //Function to show a page from the site json
   getSayonaraPage(title: String, siteJson: any): any {
+    //Reset our page
+    this.pageLoaded = false;
+    this.pageEntries = [];
+
     //Loop through the site Json
     let foundPage;
     console.log("Title: ", title, "json: ", siteJson);
@@ -58,13 +66,30 @@ export class PageComponent implements OnInit {
       if(page.title.toLowerCase() == title.toLowerCase()) {
         //Page found, return the page
         foundPage = page;
+        setTimeout(() => {
+            this.pageLoaded = true;
+        }, 100)
         return true;
       }
       //Page not found, keep going
       return false;
     });
+    //Get the entries on the page
+    this.getSayonaraPageEntries(foundPage);
     //Return the found page
     return foundPage;
+  }
+
+  //Function to get all the entries of a page
+  getSayonaraPageEntries(page) {
+      //Contenate all entries into our page's page entries
+      if(page.entryTypes.length > 0) {
+          page.entryTypes.forEach((entryType) => {
+             if(entryType.entries.length > 0) {
+                 this.pageEntries = this.pageEntries.concat(entryType.entries);
+             }
+          });
+      }
   }
 
 }

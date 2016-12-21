@@ -1,0 +1,20 @@
+.c-page {
+
+    @include element('entry-container') {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        width: 100%;
+
+        @include element('entry') {
+            max-width: 500px;
+            width: 100%;
+            margin: 10px;
+
+            @include all-mobile() {
+                width: 95%;
+                margin: 5px;
+            }
+        }
+    }
+}

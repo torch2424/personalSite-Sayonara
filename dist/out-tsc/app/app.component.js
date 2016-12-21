@@ -37,7 +37,6 @@ var AppComponent = (function () {
             sidenav.toggle();
     };
     AppComponent.prototype.isCurrentPage = function (title) {
-        console.log('hi');
         return title == this.currentPage;
     };
     AppComponent.prototype.goToPage = function (title, sidenav) {

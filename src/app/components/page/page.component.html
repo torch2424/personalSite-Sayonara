@@ -1,10 +1,33 @@
-<!-- Page Title -->
-<h1 class="center-text">{{pageTitle}}</h1>
-<md-card class="center">
-    <!-- Page Content -->
-    <!-- Need a filter to not remove style tags: http://stackoverflow.com/questions/39628007/angular2-innerhtml-binding-remove-style-attribute -->
-    <div [innerHTML]="pageContent">
+<!-- Wrap in Ng-show for animation on page change -->
+<div class="c-page animated fadeIn" [hidden]="!pageLoaded">
+    <!-- Page Title -->
+    <h1 class="center-text">{{pageTitle}}</h1>
+
+    <!-- display the page content in a card if no entryTypes -->
+    <md-card class="center" *ngIf="pageEntries.length < 1">
+        <!-- Page Content -->
+        <!-- TODO: Need a filter to not remove style tags: http://stackoverflow.com/questions/39628007/angular2-innerhtml-binding-remove-style-attribute -->
+        <div [innerHTML]="pageContent">
+        </div>
+    </md-card>
+
+    <!-- Display the page content, and a flex box of cards of the pages -->
+    <div class="center" *ngIf="pageEntries.length >= 1">
+        <!-- Page Content -->
+        <!-- Need a filter to not remove style tags: http://stackoverflow.com/questions/39628007/angular2-innerhtml-binding-remove-style-attribute -->
+        <div class="center-text" [innerHTML]="pageContent">
+        </div>
+
+        <div class="c-page__entry-container">
+            <!-- Repeat through all of our entries -->
+            <md-card class="c-page__entry-container__entry" *ngFor="let entry of pageEntries">
+                <!-- Entry Content -->
+                <!-- TODO: Need a filter to not remove style tags: http://stackoverflow.com/questions/39628007/angular2-innerhtml-binding-remove-style-attribute -->
+                <div [innerHTML]="entry.content">
+                </div>
+            </md-card>
+        </div>
     </div>
-</md-card>
+</div>
 
 <!-- Entries -->

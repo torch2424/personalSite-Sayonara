@@ -15,7 +15,9 @@ var PageComponent = (function () {
     function PageComponent(route, sayonaraService) {
         this.route = route;
         this.sayonaraService = sayonaraService;
+        this.pageLoaded = false;
         this.pageTitle = 'Home';
+        this.pageEntries = [];
         this.defaultPage = 'home';
         this.pageContent = '<h1>Loading Page...</h1>';
     }
@@ -36,16 +38,33 @@ var PageComponent = (function () {
         });
     };
     PageComponent.prototype.getSayonaraPage = function (title, siteJson) {
+        var _this = this;
+        this.pageLoaded = false;
+        this.pageEntries = [];
         var foundPage;
         console.log("Title: ", title, "json: ", siteJson);
         siteJson.pages.some(function (page) {
             if (page.title.toLowerCase() == title.toLowerCase()) {
                 foundPage = page;
+                setTimeout(function () {
+                    _this.pageLoaded = true;
+                }, 100);
                 return true;
             }
             return false;
         });
+        this.getSayonaraPageEntries(foundPage);
         return foundPage;
+    };
+    PageComponent.prototype.getSayonaraPageEntries = function (page) {
+        var _this = this;
+        if (page.entryTypes.length > 0) {
+            page.entryTypes.forEach(function (entryType) {
+                if (entryType.entries.length > 0) {
+                    _this.pageEntries = _this.pageEntries.concat(entryType.entries);
+                }
+            });
+        }
     };
     return PageComponent;
 }());

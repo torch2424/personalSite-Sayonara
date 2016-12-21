@@ -40,7 +40,6 @@ export class AppComponent implements OnInit {
       //Set the site title
       this.siteTitle = success.siteName;
 
-      //TODO: Set the nav bar
       this.getNavPages(success);
 
       //Navigate to the home page
@@ -59,7 +58,6 @@ export class AppComponent implements OnInit {
 
   //Function to return if the current title refers to the current page
   isCurrentPage(title) {
-      console.log('hi');
       return title == this.currentPage;
   }
 

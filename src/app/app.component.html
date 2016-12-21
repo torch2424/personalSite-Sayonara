@@ -6,10 +6,10 @@
   <md-sidenav #sidenav mode="side" class="nav__sidenav">
 
     <!-- title of the sidenav -->
-    <h2 class="center-text">Navigation</h2>
+    <h2 class="center-text animated fadeIn">Navigation</h2>
 
     <!-- List all of our page titles -->
-    <div class="nav__sidenav__page-link"
+    <div class="nav__sidenav__page-link animated fadeInLeft"
         *ngFor="let pageTitle of navPages; let pageIndex = index;"
         [ngClass]="{'nav__sidenav__page-link--active-page': isCurrentPage(pageTitle)}"
         (click)="goToPage(pageTitle, sidenav)">
@@ -18,7 +18,7 @@
     </div>
 
     <!-- Close Link -->
-    <div class="nav__sidenav__page-link"
+    <div class="nav__sidenav__page-link animated fadeInLeft"
         (click)="sidenav.toggle()">
         <hr>
         <div class="nav__sidenav__page-link__text">Close</div>

@@ -84,6 +84,9 @@
         margin-top: 0px;
         opacity: 0;
 
+        //Preety overlay color transition
+        transition: opacity 0.5s;
+
         @include modifier('show') {
             opacity: 1;
             height: calc(100% + 100px);
@@ -96,10 +99,11 @@
 .c-app {
     @extend .center;
 
-    max-width: $desktop-width;
-    width: 100%;
+    max-width: $large-desktop-width;
     padding-top: 10px;
     padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 
     @include all-mobile() {
         width: 95%;
