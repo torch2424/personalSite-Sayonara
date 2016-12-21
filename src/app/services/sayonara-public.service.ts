@@ -23,7 +23,6 @@ export class SayonaraPublicService {
 
   //Get the site, and allow passing a callback
   getSayonaraSite() {
-    console.log('Getting the site!');
     //Get the full Url, dont use port 8000 for production
     let sayonaraUrl = '//' + this.document.location.hostname + ':8000' + this.sayonaraPublicPath;
 

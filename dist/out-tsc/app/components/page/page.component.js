@@ -42,7 +42,6 @@ var PageComponent = (function () {
         this.pageLoaded = false;
         this.pageEntries = [];
         var foundPage;
-        console.log("Title: ", title, "json: ", siteJson);
         siteJson.pages.some(function (page) {
             if (page.title.toLowerCase() == title.toLowerCase()) {
                 foundPage = page;

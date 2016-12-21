@@ -61,7 +61,6 @@ export class PageComponent implements OnInit {
 
     //Loop through the site Json
     let foundPage;
-    console.log("Title: ", title, "json: ", siteJson);
     siteJson.pages.some((page) => {
       if(page.title.toLowerCase() == title.toLowerCase()) {
         //Page found, return the page
