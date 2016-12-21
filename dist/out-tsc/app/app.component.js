@@ -16,7 +16,8 @@ var AppComponent = (function () {
         this.sayonaraService = sayonaraService;
         this.siteTitle = '';
         this.navPages = [];
-        this.homePageTitleKey = 'home';
+        this.currentPage = '';
+        this.homePageTitleKey = 'Home';
     }
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -26,6 +27,7 @@ var AppComponent = (function () {
             _this.siteTitle = success.siteName;
             _this.getNavPages(success);
             _this.router.navigate(['/page/' + self.homePageTitleKey]);
+            _this.currentPage = self.homePageTitleKey;
         }, function (error) {
             console.log("Sayonara error: ", error);
         });
@@ -34,9 +36,15 @@ var AppComponent = (function () {
         if (sidenav.opened)
             sidenav.toggle();
     };
+    AppComponent.prototype.isCurrentPage = function (title) {
+        console.log('hi');
+        return title == this.currentPage;
+    };
     AppComponent.prototype.goToPage = function (title, sidenav) {
         this.router.navigate(['/page/' + title]);
-        sidenav.toggle();
+        this.currentPage = title;
+        if (sidenav)
+            sidenav.toggle();
     };
     AppComponent.prototype.getNavPages = function (siteJson) {
         var self = this;

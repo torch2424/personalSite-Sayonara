@@ -18,8 +18,11 @@ export class AppComponent implements OnInit {
   //Array of titles of pages for the nav bar
   navPages = [];
 
+  //Our current page
+  currentPage = '';
+
   //The title attribute of the sayonara site that leads home
-  private homePageTitleKey = 'home';
+  private homePageTitleKey = 'Home';
 
   constructor(
     private router: Router,
@@ -42,6 +45,7 @@ export class AppComponent implements OnInit {
 
       //Navigate to the home page
       this.router.navigate(['/page/' + self.homePageTitleKey]);
+      this.currentPage = self.homePageTitleKey;
     }, (error) => {
       //TODO: handle the error
       console.log("Sayonara error: ", error);
@@ -53,12 +57,19 @@ export class AppComponent implements OnInit {
       if(sidenav.opened) sidenav.toggle();
   }
 
+  //Function to return if the current title refers to the current page
+  isCurrentPage(title) {
+      console.log('hi');
+      return title == this.currentPage;
+  }
+
   //Funciton to go to a page from the sidenav
   goToPage(title, sidenav) {
       //Go to the route
       this.router.navigate(['/page/' + title]);
+      this.currentPage = title;
       //Toggle the sidenav
-      sidenav.toggle();
+      if(sidenav) sidenav.toggle();
   }
 
   //Get all the titles of the pages from the site json
