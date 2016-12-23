@@ -41,7 +41,7 @@
     <div class="nav__page-link"
         [hidden]="sayonaraService.getSayonaraError()"
         *ngFor="let page of navPages"
-        [ngClass]="{'nav__page-link--active-page': isCurrentPage(pageTitle)}"
+        [ngClass]="{'nav__page-link--active-page': isCurrentPage(page.title)}"
         (click)="goToPage(page.title)">
         {{page.title}}
     </div>

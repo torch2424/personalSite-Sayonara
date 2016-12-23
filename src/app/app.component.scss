@@ -12,6 +12,7 @@
             @extend .center-text;
             font-size: 22px;
             font-weight: bold;
+            cursor: pointer;
 
             @include element('text') {
                 padding-top: 15px;
@@ -42,6 +43,7 @@
         padding-left: 10px;
         padding-right: 10px;
         height: 100%;
+        cursor: pointer;
 
         @include modifier('active-page') {
             background-color: lighten( $navColor, 4% );
