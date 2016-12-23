@@ -28,8 +28,9 @@
 
 .c-loading {
     position: fixed;
-    top: calc(33%);
-    left: calc(50% - 45%);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     z-index: 5 !important;
 
     //Ionic stable alpha
@@ -37,7 +38,8 @@
     border-radius: 5px;
     padding: 10px;
     margin: 0px;
-    width: 90%;
+    width: 80%;
+    max-width: 500px;
     color: standard;
 
     @include element('title') {
