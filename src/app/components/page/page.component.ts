@@ -3,10 +3,10 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Observable }     from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 
-//Import our sayonara service
+//Import our services
 import { SayonaraPublicService } from '../../services/sayonara-public/sayonara-public.service';
-//Import our route navigator helper
-import {  RouteNavigatorService } from '../../services/route-navigator/route-navigator.service';
+import { RouteNavigatorService } from '../../services/route-navigator/route-navigator.service';
+import { LoggerService } from '../../services/logger/logger.service';
 
 @Component({
   selector: 'app-page',
@@ -49,7 +49,7 @@ export class PageComponent implements OnInit {
       });
     }, (error) => {
       //Toggle the error on sayonara
-      console.error('page error!');
+      LoggerService.error('page error!');
       this.sayonaraService.toggleSayonaraError();
     });
   }

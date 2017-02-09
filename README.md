@@ -7,6 +7,8 @@ This is the Sayonara Client.
 
 Serve with `ng serve --host 0.0.0.0 --port 4000`
 
+Build with `ng build -prod`
+
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.22-1.
 
 ## Development server

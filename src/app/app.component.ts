@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable }     from 'rxjs/Observable';
 
-//Import our sayonara service
+//Import Our Services
 import { SayonaraPublicService } from './services/sayonara-public/sayonara-public.service';
-//Import our route navigator helper
-import {  RouteNavigatorService } from './services/route-navigator/route-navigator.service';
+import { RouteNavigatorService } from './services/route-navigator/route-navigator.service';
+import { LoggerService } from './services/logger/logger.service';
 
 //Style URLS will be importes by the styles.scss
 @Component({
@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
     //Make the request
     this.sayonaraService.getSayonaraSite().subscribe((success: any) => {
       //Got the json!
-      console.debug("Sayonara Success: ", success);
+      LoggerService.debug("Sayonara API Success Response: ", success);
 
       //Set the site title
       this.siteTitle = success.siteName;
@@ -41,7 +41,7 @@ export class AppComponent implements OnInit {
 
     }, (error) => {
       this.sayonaraService.toggleSayonaraError();
-      console.error("Sayonara error: ", error);
+      LoggerService.error("Sayonara API error: ", error);
     });
   }
 
