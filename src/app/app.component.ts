@@ -36,8 +36,7 @@ export class AppComponent implements OnInit {
 
       this.getNavPages(success);
 
-      //Go to the page in the url
-      this.routeNavigator.goToUrlPage();
+      //Page component will handle loading the default page
 
     }, (error) => {
       this.sayonaraService.toggleSayonaraError();

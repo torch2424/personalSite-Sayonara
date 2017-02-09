@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 
-//Get the browser docuemtn for location
+//Get the browser document for location
 import { DOCUMENT } from '@angular/platform-browser'
 
 //Make Http requests

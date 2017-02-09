@@ -18,6 +18,7 @@ import { SafeHtmlPipe } from './pipes/safe-html/safe-html.pipe';
 //https://angular.io/docs/ts/latest/guide/router.html
 const appRoutes: Routes = [
   { path: 'page/:title', component: PageComponent },
+  { path: '**',   redirectTo: 'page/notfound' },
 ];
 // const routes: Routes = [
 //   { path: '', component: HomeComponent },

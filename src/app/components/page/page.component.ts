@@ -39,10 +39,9 @@ export class PageComponent implements OnInit {
         let currentPageTitle = params['title'];
         this.pageTitle = currentPageTitle;
         let sayonaraPage = this.getSayonaraPage(currentPageTitle, success);
-        if(sayonaraPage.content) {
+        if(sayonaraPage && sayonaraPage.content) {
             this.pageContent = sayonaraPage.content;
-        }
-        else {
+        } else {
             //Go to the default page
             this.routeNavigator.goToDefaultPage();
         }

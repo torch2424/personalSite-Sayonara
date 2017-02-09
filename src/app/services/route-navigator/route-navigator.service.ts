@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router } from '@angular/router';
 import { Observable }     from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 
 //Import our sayonara service
 import { SayonaraPublicService } from '../sayonara-public/sayonara-public.service';
+import { LoggerService } from '../logger/logger.service';
 
 @Injectable()
 export class RouteNavigatorService {
@@ -16,7 +17,6 @@ export class RouteNavigatorService {
 
   constructor(
     private router: Router,
-    private activatedRoute: ActivatedRoute,
     private sayonaraService: SayonaraPublicService
   ) {
     this.sayonaraService.getSayonaraSite().subscribe((success: any) => {
@@ -29,20 +29,6 @@ export class RouteNavigatorService {
     //Get the default page (zero index)
     let defaultPageTitle = this.sayonaraPages[0].title
     this.goToPage(defaultPageTitle);
-  }
-
-  //Function to go to the page currently in the route
-  goToUrlPage() {
-    //Get our route params
-    this.activatedRoute.params.subscribe((params) => {
-      let currentPageTitle = params['title'];
-      if(currentPageTitle) {
-        this.goToPage(currentPageTitle);
-      } else {
-        //Go To the default page
-        this.goToDefaultPage();
-      }
-    });
   }
 
   //Function to go to a page from the sidenav
