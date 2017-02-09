@@ -46,7 +46,7 @@ export class RouteNavigatorService {
   }
 
   //Function to go to a page from the sidenav
-  goToPage(title, sidenav) {
+  goToPage(title: string, sidenav?: any) {
       //Go to the route
       this.router.navigate(['/page/' + title]);
       this.currentPage = title;
@@ -55,7 +55,7 @@ export class RouteNavigatorService {
   }
 
   //Function to return if the current title refers to the current page
-  isCurrentPage(title) {
+  isCurrentPage(title: string) {
       return title == this.currentPage;
   }
 

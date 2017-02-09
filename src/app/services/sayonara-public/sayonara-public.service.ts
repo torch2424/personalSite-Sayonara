@@ -8,6 +8,9 @@ import { Http, Response } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
+//Our environment
+import { environment } from '../../../environments/environment';
+
 
 @Injectable()
 export class SayonaraPublicService {
@@ -26,7 +29,14 @@ export class SayonaraPublicService {
   //Get the site, and allow passing a callback
   getSayonaraSite() {
     //Get the full Url, dont use port 8000 for production
-    let sayonaraUrl = '//' + this.document.location.hostname + ':8000' + this.sayonaraPublicPath;
+    let sayonaraUrl;
+    if(!environment.production) {
+      //Point to dev sayonara
+      sayonaraUrl = '//' + this.document.location.hostname + ':8000' + this.sayonaraPublicPath;
+    } else {
+      //Point to prod sayonara
+      sayonaraUrl = '//' + this.document.location.host + this.sayonaraPublicPath;
+    }
 
     //Return an observable
     return new Observable((observer) => {

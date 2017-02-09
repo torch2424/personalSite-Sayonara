@@ -49,7 +49,7 @@ export class PageComponent implements OnInit {
       });
     }, (error) => {
       //Toggle the error on sayonara
-      console.log('page error!');
+      console.error('page error!');
       this.sayonaraService.toggleSayonaraError();
     });
   }
