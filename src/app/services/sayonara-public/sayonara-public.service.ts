@@ -28,25 +28,22 @@ export class SayonaraPublicService {
     //Get the full Url, dont use port 8000 for production
     let sayonaraUrl = '//' + this.document.location.hostname + ':8000' + this.sayonaraPublicPath;
 
-    //Get a reference to this
-    let self = this;
-
     //Return an observable
     return new Observable((observer) => {
 
       //Check if we already have the json
-      if(self.sayonaraSiteJson) {
-        observer.next(self.sayonaraSiteJson);
+      if(this.sayonaraSiteJson) {
+        observer.next(this.sayonaraSiteJson);
         return;
       }
 
       //If not request it
-      self.http.get(sayonaraUrl)
+      this.http.get(sayonaraUrl)
         .map(res => res.json())
         .subscribe((success) => {
           //Success!
           //Save/cache our site json
-          self.sayonaraSiteJson = success;
+          this.sayonaraSiteJson = success;
 
           //return to our observer
           observer.next(success);

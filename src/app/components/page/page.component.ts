@@ -1,10 +1,12 @@
 import { Component, OnInit} from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Observable }     from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 
 //Import our sayonara service
 import { SayonaraPublicService } from '../../services/sayonara-public/sayonara-public.service';
+//Import our route navigator helper
+import {  RouteNavigatorService } from '../../services/route-navigator/route-navigator.service';
 
 @Component({
   selector: 'app-page',
@@ -23,9 +25,9 @@ export class PageComponent implements OnInit {
   pageContent = '<h1>Loading Page...</h1>'
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private sayonaraService: SayonaraPublicService
+    private activatedRoute: ActivatedRoute,
+    private sayonaraService: SayonaraPublicService,
+    private routeNavigator: RouteNavigatorService
   ) { }
 
   ngOnInit() {
@@ -33,7 +35,7 @@ export class PageComponent implements OnInit {
     this.sayonaraService.getSayonaraSite().subscribe((success) => {
       //Success!
       //Then get our route params
-      this.route.params.subscribe((params) => {
+      this.activatedRoute.params.subscribe((params) => {
         let currentPageTitle = params['title'];
         this.pageTitle = currentPageTitle;
         let sayonaraPage = this.getSayonaraPage(currentPageTitle, success);
@@ -42,7 +44,7 @@ export class PageComponent implements OnInit {
         }
         else {
             //Go to the default page
-            //this.router.navigate(['/page/' + this.defaultPage]);
+            this.routeNavigator.goToDefaultPage();
         }
       });
     }, (error) => {
@@ -59,7 +61,7 @@ export class PageComponent implements OnInit {
     this.pageEntries = [];
 
     //Loop through the site Json
-    let foundPage;
+    let foundPage = false;
     siteJson.pages.some((page) => {
       if(page.title.toLowerCase() == title.toLowerCase()) {
         //Page found!
@@ -73,6 +75,12 @@ export class PageComponent implements OnInit {
       //Page not found, keep going
       return false;
     });
+
+    //Ensure we found a page
+    if(!foundPage) {
+      this.routeNavigator.goToDefaultPage();
+      return;
+    }
     //Get the entries on the page
     this.getSayonaraPageEntries(foundPage);
     //Return the found page

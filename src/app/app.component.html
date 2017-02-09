@@ -12,8 +12,8 @@
     <div class="nav__sidenav__page-link animated fadeInLeft"
         [hidden]="sayonaraService.getSayonaraError()"
         *ngFor="let page of navPages; let pageIndex = index;"
-        [ngClass]="{'nav__sidenav__page-link--active-page': isCurrentPage(pageTitle)}"
-        (click)="goToPage(page.title, sidenav)">
+        [ngClass]="{'nav__sidenav__page-link--active-page': routeNavigator.isCurrentPage(pageTitle)}"
+        (click)="routeNavigator.goToPage(page.title, sidenav)">
         <hr>
         <div class="nav__sidenav__page-link__text">{{page.title}}</div>
     </div>
@@ -41,8 +41,8 @@
     <div class="nav__page-link"
         [hidden]="sayonaraService.getSayonaraError()"
         *ngFor="let page of navPages"
-        [ngClass]="{'nav__page-link--active-page': isCurrentPage(page.title)}"
-        (click)="goToPage(page.title)">
+        [ngClass]="{'nav__page-link--active-page': routeNavigator.isCurrentPage(page.title)}"
+        (click)="routeNavigator.goToPage(page.title)">
         {{page.title}}
     </div>
 

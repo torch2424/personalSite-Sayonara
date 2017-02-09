@@ -1,27 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable }     from 'rxjs/Observable';
 
 //Import our sayonara service
 import { SayonaraPublicService } from './services/sayonara-public/sayonara-public.service';
+//Import our route navigator helper
+import {  RouteNavigatorService } from './services/route-navigator/route-navigator.service';
 
 //Style URLS will be importes by the styles.scss
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  providers: [SayonaraPublicService]
+  providers: [SayonaraPublicService, RouteNavigatorService]
 })
 export class AppComponent implements OnInit {
   //The Website Title
   siteTitle = '';
   //Array of titles of pages for the nav bar
   navPages = [];
-  //Our current page
-  currentPage = '';
 
   constructor(
-    private router: Router,
-    private sayonaraService: SayonaraPublicService
+    private sayonaraService: SayonaraPublicService,
+    private routeNavigator: RouteNavigatorService
   ) { }
 
   ngOnInit() {
@@ -37,16 +36,9 @@ export class AppComponent implements OnInit {
 
       this.getNavPages(success);
 
-      //Check if we are currently going to a page
-      //Get our route params
-      this.router.params.subscribe((params) => {
-        let currentPageTitle = params['title'];
-        this.goToPage(currentPageTitle);
-        else {
-          //Go To the default page
-          this.goToDefaultPage();
-        }
-      });
+      //Go to the page in the url
+      this.routeNavigator.goToUrlPage();
+
     }, (error) => {
       this.sayonaraService.toggleSayonaraError();
       console.log("Sayonara error: ", error);
@@ -56,28 +48,6 @@ export class AppComponent implements OnInit {
   //Function to close the sidenav
   clickOutsideSideNav(sidenav: any) {
       if(sidenav.opened) sidenav.toggle();
-  }
-
-  //Function to return if the current title refers to the current page
-  isCurrentPage(title) {
-      return title == this.currentPage;
-  }
-
-  //Function to go to the default page
-  goToDefaultPage() {
-    //Get the default page (zero index)
-    let defaultPageTitle = success.pages[0].title
-
-    this.goToPage(defaultPageTitle);
-  }
-
-  //Function to go to a page from the sidenav
-  goToPage(title, sidenav) {
-      //Go to the route
-      this.router.navigate(['/page/' + title]);
-      this.currentPage = title;
-      //Toggle the sidenav
-      if(sidenav) sidenav.toggle();
   }
 
   //Get all the titles of the pages from the site json
