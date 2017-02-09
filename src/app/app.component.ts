@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable }     from 'rxjs/Observable';
 
 //Import our sayonara service
-import { SayonaraPublicService } from './services/sayonara-public.service';
+import { SayonaraPublicService } from './services/sayonara-public/sayonara-public.service';
 
 //Style URLS will be importes by the styles.scss
 @Component({
@@ -39,20 +39,12 @@ export class AppComponent implements OnInit {
 
       //Check if we are currently going to a page
       //Get our route params
-      self.router.params.subscribe((params) => {
+      this.router.params.subscribe((params) => {
         let currentPageTitle = params['title'];
-        self.pageTitle = currentPageTitle;
-        let sayonaraPage = self.getSayonaraPage(currentPageTitle, success);
-        if(sayonaraPage.content) {
-            self.pageContent = sayonaraPage.content;
-        }
+        this.goToPage(currentPageTitle);
         else {
-            //Go to the first page
-            let homePageTitle = success.pages[0].title
-
-            //Navigate to the home page
-            this.router.navigate(['/page/' + homePageTitle]);
-            this.currentPage = homePageTitle;
+          //Go To the default page
+          this.goToDefaultPage();
         }
       });
     }, (error) => {
@@ -71,18 +63,21 @@ export class AppComponent implements OnInit {
       return title == this.currentPage;
   }
 
-  //Funciton to go to a page from the sidenav
+  //Function to go to the default page
+  goToDefaultPage() {
+    //Get the default page (zero index)
+    let defaultPageTitle = success.pages[0].title
+
+    this.goToPage(defaultPageTitle);
+  }
+
+  //Function to go to a page from the sidenav
   goToPage(title, sidenav) {
       //Go to the route
       this.router.navigate(['/page/' + title]);
       this.currentPage = title;
       //Toggle the sidenav
       if(sidenav) sidenav.toggle();
-  }
-
-  //Function to go to the default page
-  goToDefaultPage() {
-
   }
 
   //Get all the titles of the pages from the site json

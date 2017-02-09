@@ -4,7 +4,7 @@ import { Observable }     from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 
 //Import our sayonara service
-import { SayonaraPublicService } from '../../services/sayonara-public.service';
+import { SayonaraPublicService } from '../../services/sayonara-public/sayonara-public.service';
 
 @Component({
   selector: 'app-page',
@@ -29,22 +29,20 @@ export class PageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    //Get a reference to this
-    let self = this;
     //Get the sayonara site
     this.sayonaraService.getSayonaraSite().subscribe((success) => {
       //Success!
       //Then get our route params
-      self.route.params.subscribe((params) => {
+      this.route.params.subscribe((params) => {
         let currentPageTitle = params['title'];
-        self.pageTitle = currentPageTitle;
-        let sayonaraPage = self.getSayonaraPage(currentPageTitle, success);
+        this.pageTitle = currentPageTitle;
+        let sayonaraPage = this.getSayonaraPage(currentPageTitle, success);
         if(sayonaraPage.content) {
-            self.pageContent = sayonaraPage.content;
+            this.pageContent = sayonaraPage.content;
         }
         else {
             //Go to the default page
-            this.router.navigate(['/page/' + this.defaultPage]);
+            //this.router.navigate(['/page/' + this.defaultPage]);
         }
       });
     }, (error) => {
