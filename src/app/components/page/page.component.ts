@@ -18,9 +18,6 @@ export class PageComponent implements OnInit {
   pageTitle = 'Home';
   pageEntries = [];
 
-  //In the case of the page not being passed, the default title to look for
-  private defaultPage = 'Home';
-
   //Bind Html
   //http://stackoverflow.com/questions/31548311/angular-2-html-binding
   pageContent = '<h1>Loading Page...</h1>'
@@ -97,7 +94,7 @@ export class PageComponent implements OnInit {
       }
 
       //Organize the entries
-      this.pageEntries = this.sayonaraService.getOrderHack(entries);
+      this.pageEntries = this.sayonaraService.sortByOrder(entries);
   }
 
 }

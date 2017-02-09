@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable }     from 'rxjs/Observable';
 
 //Import our sayonara service
@@ -18,8 +18,6 @@ export class AppComponent implements OnInit {
   navPages = [];
   //Our current page
   currentPage = '';
-  //The title attribute of the sayonara site that leads home
-  private homePageTitleKey = 'Home';
 
   constructor(
     private router: Router,
@@ -39,9 +37,24 @@ export class AppComponent implements OnInit {
 
       this.getNavPages(success);
 
-      //Navigate to the home page
-      this.router.navigate(['/page/' + self.homePageTitleKey]);
-      this.currentPage = self.homePageTitleKey;
+      //Check if we are currently going to a page
+      //Get our route params
+      self.router.params.subscribe((params) => {
+        let currentPageTitle = params['title'];
+        self.pageTitle = currentPageTitle;
+        let sayonaraPage = self.getSayonaraPage(currentPageTitle, success);
+        if(sayonaraPage.content) {
+            self.pageContent = sayonaraPage.content;
+        }
+        else {
+            //Go to the first page
+            let homePageTitle = success.pages[0].title
+
+            //Navigate to the home page
+            this.router.navigate(['/page/' + homePageTitle]);
+            this.currentPage = homePageTitle;
+        }
+      });
     }, (error) => {
       this.sayonaraService.toggleSayonaraError();
       console.log("Sayonara error: ", error);
@@ -67,6 +80,11 @@ export class AppComponent implements OnInit {
       if(sidenav) sidenav.toggle();
   }
 
+  //Function to go to the default page
+  goToDefaultPage() {
+
+  }
+
   //Get all the titles of the pages from the site json
   private getNavPages(siteJson) {
       let pagesArray = [];
@@ -74,6 +92,6 @@ export class AppComponent implements OnInit {
           if(page.title) pagesArray.push(page);
       });
 
-      this.navPages = this.sayonaraService.getOrderHack(pagesArray);
+      this.navPages = this.sayonaraService.sortByOrder(pagesArray);
   }
 }
