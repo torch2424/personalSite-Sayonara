@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   navPages = [];
 
   constructor(
-    private sayonaraService: SayonaraPublicService,
+    public sayonaraService: SayonaraPublicService,
     private routeNavigator: RouteNavigatorService
   ) { }
 
