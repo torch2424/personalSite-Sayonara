@@ -29,7 +29,7 @@
 
   <!-- Desktop Nav Bar -->
   <md-toolbar color="primary">
-    <button class="nav__icon-button" [hidden]="sayonaraError" (click)="sidenav.toggle()">
+    <button class="nav__icon-button" [hidden]="sayonaraService.getSayonaraError()" (click)="sidenav.toggle()">
       <i class="material-icons app-toolbar-menu">menu</i>
     </button>
 
