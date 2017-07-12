@@ -9,7 +9,9 @@ This is the Sayonara Client.
 
 Serve with `ng serve --host 0.0.0.0 --port 4000`
 
-Build with `ng build -prod`
+Build with `./build.sh`, please see `build.sh` for build steps
+
+[Building Angular in Production Tips](https://stackoverflow.com/questions/37631098/how-to-bundle-an-angular-app-for-production)
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.22-1.
 
