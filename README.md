@@ -3,6 +3,8 @@ A website to showcase my work and portfolio. Built on [SayonaraJS](https://githu
 
 This is the Sayonara Client.
 
+**All packages in `package.json` are static as I needed a quickfix for a11y, and hadn't updated dependencies in a while**
+
 # AaronTheDev
 
 Serve with `ng serve --host 0.0.0.0 --port 4000`

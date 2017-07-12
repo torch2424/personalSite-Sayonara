@@ -6,51 +6,64 @@
   <md-sidenav #sidenav mode="side" class="nav__sidenav">
 
     <!-- title of the sidenav -->
-    <h2 class="center-text animated fadeIn">Navigation</h2>
+    <nav>
+      <h2 id="nav__sidenav__nav-title"
+        class="center-text animated fadeIn">
+        Navigation
+      </h2>
 
-    <!-- List all of our page titles -->
-    <div class="nav__sidenav__page-link animated fadeInLeft"
-        [hidden]="sayonaraService.getSayonaraError()"
-        *ngFor="let page of navPages; let pageIndex = index;"
-        [ngClass]="{'nav__sidenav__page-link--active-page': routeNavigator.isCurrentPage(pageTitle)}"
-        (click)="routeNavigator.goToPage(page.title, sidenav)">
-        <hr>
-        <div class="nav__sidenav__page-link__text">{{page.title}}</div>
-    </div>
+      <!-- List all of our page titles -->
+      <div class="nav__sidenav__page-link animated fadeInLeft"
+          [hidden]="sayonaraService.getSayonaraError()"
+          *ngFor="let page of navPages; let pageIndex = index;"
+          [ngClass]="{'nav__sidenav__page-link--active-page': routeNavigator.isCurrentPage(pageTitle)}"
+          role="link"
+          (click)="routeNavigator.goToPage(page.title, sidenav)">
+          <hr>
+          <div class="nav__sidenav__page-link__text">{{page.title}}</div>
+      </div>
 
-    <!-- Close Link -->
-    <div class="nav__sidenav__page-link animated fadeInLeft"
-        (click)="sidenav.toggle()">
-        <hr>
-        <div class="nav__sidenav__page-link__text">Close</div>
-        <hr>
-    </div>
+      <!-- Close Link -->
+      <div class="nav__sidenav__page-link animated fadeInLeft"
+          role="button"
+          (click)="sidenav.toggle()">
+          <hr>
+          <div class="nav__sidenav__page-link__text">Close</div>
+          <hr>
+      </div>
+    </nav>
   </md-sidenav>
 
   <!-- Desktop Nav Bar -->
-  <md-toolbar color="primary">
-    <button class="nav__icon-button" [hidden]="sayonaraService.getSayonaraError()" (click)="sidenav.toggle()">
-      <i class="material-icons app-toolbar-menu">menu</i>
-    </button>
+  <md-toolbar color="primary" class="nav__headernav">
+    <header>
+      <nav>
+        <button class="nav__icon-button" [hidden]="sayonaraService.getSayonaraError()" (click)="sidenav.toggle();focusOnElementId('nav__sidenav__nav-title');">
+          <i class="material-icons app-toolbar-menu">menu</i>
+        </button>
 
-    <div class="nav__title">
-        {{siteTitle}}
-    </div>
+        <div class="nav__title">
+            {{siteTitle}}
+        </div>
 
-    <!-- List all of our page titles -->
-    <div class="nav__page-link"
-        [hidden]="sayonaraService.getSayonaraError()"
-        *ngFor="let page of navPages"
-        [ngClass]="{'nav__page-link--active-page': routeNavigator.isCurrentPage(page.title)}"
-        (click)="routeNavigator.goToPage(page.title)">
-        {{page.title}}
-    </div>
+        <!-- List all of our page titles -->
+        <div class="nav__page-link"
+            [hidden]="sayonaraService.getSayonaraError()"
+            *ngFor="let page of navPages"
+            [ngClass]="{'nav__page-link--active-page': routeNavigator.isCurrentPage(page.title)}"
+            role="link"
+            (click)="routeNavigator.goToPage(page.title)">
+            {{page.title}}
+        </div>
 
-    <span class="app-toolbar-filler"></span>
+        <span class="app-toolbar-filler"></span>
+      </nav>
+    </header>
   </md-toolbar>
 
   <!-- Overlay to show when sidenav opened -->
   <div class="nav__overlay"
+      aria-hidden="true"
       [ngClass]="{'nav__overlay--show': sidenav.opened}"
       (click)="clickOutsideSideNav(sidenav)">
   </div>
