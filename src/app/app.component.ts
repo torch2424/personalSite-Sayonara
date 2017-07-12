@@ -24,8 +24,6 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    //Get a reference to this
-    let self = this;
     //Make the request
     this.sayonaraService.getSayonaraSite().subscribe((success: any) => {
       //Got the json!
@@ -42,6 +40,11 @@ export class AppComponent implements OnInit {
       this.sayonaraService.toggleSayonaraError();
       LoggerService.error("Sayonara API error: ", error);
     });
+  }
+
+  // Simply focus on a passed view child
+  focusOnElementId(elementId: any) {
+    document.getElementById(elementId).focus();
   }
 
   //Function to close the sidenav

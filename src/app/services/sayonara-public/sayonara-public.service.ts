@@ -31,8 +31,13 @@ export class SayonaraPublicService {
     //Get the full Url, dont use port 8000 for production
     let sayonaraUrl;
     if(!environment.production) {
-      //Point to dev sayonara
-      sayonaraUrl = '//' + this.document.location.hostname + ':8000' + this.sayonaraPublicPath;
+      if (environment.apiEndpoint && environment.apiEndpoint.length) {
+        //Point to dev sayonara
+        sayonaraUrl = environment.apiEndpoint + this.sayonaraPublicPath;
+      } else {
+        //Point to dev sayonara
+        sayonaraUrl = '//' + this.document.location.hostname + ':8000' + this.sayonaraPublicPath;
+      }
     } else {
       //Point to prod sayonara
       sayonaraUrl = '//' + this.document.location.host + this.sayonaraPublicPath;

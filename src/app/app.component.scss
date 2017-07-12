@@ -8,8 +8,15 @@
         padding: 10px;
         background-color: $navColor;
 
+        nav {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+        }
+
         @include element('page-link') {
             @extend .center-text;
+            width: 100%;
             font-size: 22px;
             font-weight: bold;
             cursor: pointer;
@@ -29,9 +36,24 @@
         }
     }
 
+    @include element('headernav') {
+      nav {
+        display: flex;
+        width: 100%;
+      }
+
+      header, nav {
+        height: 100%;
+      }
+    }
+
     @include element('title') {
         margin-left: 10px;
         margin-right: 10px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
 
