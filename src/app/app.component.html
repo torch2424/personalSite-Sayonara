@@ -52,6 +52,8 @@
             *ngFor="let page of navPages"
             [ngClass]="{'nav__page-link--active-page': routeNavigator.isCurrentPage(page.title)}"
             role="link"
+            tabindex="0"
+            (keyup.enter)="routeNavigator.goToPage(page.title)"
             (click)="routeNavigator.goToPage(page.title)">
             {{page.title}}
         </div>
