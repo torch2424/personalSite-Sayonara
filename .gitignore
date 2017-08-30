@@ -1,5 +1,8 @@
 # Removed Built site from being ignored
 
+# OSX
+**/.DS_Store
+
 
 # Logs
 logs

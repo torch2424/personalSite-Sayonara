@@ -42,9 +42,12 @@ export class AppComponent implements OnInit {
     });
   }
 
-  // Simply focus on a passed view child
-  focusOnElementId(elementId: any) {
-    document.getElementById(elementId).focus();
+  // Toggle the passed sidenav, and then focus on the passed element id
+  toggleThenFocusOnElement(sidenav: any, elementId: any) {
+    sidenav.toggle().then(() => {
+      document.getElementById(elementId).focus();
+      console.log(document.activeElement);
+    });
   }
 
   //Function to close the sidenav
