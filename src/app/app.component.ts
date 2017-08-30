@@ -46,7 +46,6 @@ export class AppComponent implements OnInit {
   toggleThenFocusOnElement(sidenav: any, elementId: any) {
     sidenav.toggle().then(() => {
       document.getElementById(elementId).focus();
-      console.log(document.activeElement);
     });
   }
 
